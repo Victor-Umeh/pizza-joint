@@ -1,29 +1,30 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAnimationVariants } from "../animationContext";
 
 //animation properties
-const container = {
-  hidden: {
-    x: "100vw",
-  },
-  visible: {
-    x: 0,
-    transition: { delay: 0.5, type: "spring" },
-  },
-};
+// const container = {
+//   hidden: {
+//     x: "100vw",
+//   },
+//   visible: {
+//     x: 0,
+//     transition: { delay: 0.5, type: "spring" },
+//   },
+// };
 
-const button = {
-  hidden: {
-    x: "100vw",
-  },
-  visible: {
-    x: 0,
-    transition: { duration: 0.5, type: "tween", ease: "easeOut" },
-  },
-};
+// const button = {
+//   hidden: {
+//     x: "100vw",
+//   },
+//   visible: {
+//     x: 0,
+//     transition: { duration: 0.5, type: "tween", ease: "easeOut" },
+//   },
+// };
 
 const Base = ({ addBase, pizza }) => {
+  const { button, container } = useAnimationVariants();
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   return (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import AnimationProvider from "./animationContext";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Base from "./components/Base";
@@ -24,21 +25,23 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route
-          path="/base"
-          element={<Base addBase={addBase} pizza={pizza} />}
-        ></Route>
-        <Route
-          path="/toppings"
-          element={<Toppings addTopping={addTopping} pizza={pizza} />}
-        ></Route>
-        <Route path="/order" element={<Order pizza={pizza} />}></Route>
-        <Route path="/" element={<Home />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <AnimationProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route
+            path="/base"
+            element={<Base addBase={addBase} pizza={pizza} />}
+          ></Route>
+          <Route
+            path="/toppings"
+            element={<Toppings addTopping={addTopping} pizza={pizza} />}
+          ></Route>
+          <Route path="/order" element={<Order pizza={pizza} />}></Route>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </AnimationProvider>
   );
 }
 
