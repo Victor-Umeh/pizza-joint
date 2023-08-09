@@ -57,7 +57,6 @@ const Base = ({ addBase, pizza }) => {
           );
         })}
       </ul>
-
       {pizza.base && (
         <motion.div className="next" variants={button}>
           <Link to="/toppings">

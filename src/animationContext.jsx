@@ -32,5 +32,4 @@ const AnimationProvider = ({ children }) => {
 };
 
 export const useAnimationVariants = () => useContext(AnimationContext);
-
 export default AnimationProvider;

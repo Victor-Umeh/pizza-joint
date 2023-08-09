@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useAnimationVariants } from "../animationContext";
 
 const Toppings = ({ addTopping, pizza }) => {
+  const { container, button } = useAnimationVariants();
   let toppings = [
     "mushrooms",
     "peppers",
@@ -12,7 +14,12 @@ const Toppings = ({ addTopping, pizza }) => {
   ];
 
   return (
-    <div className="toppings container">
+    <motion.div
+      className="toppings container"
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
       <h3>Step 2: Choose Toppings</h3>
       <ul>
         {toppings.map((topping) => {
@@ -39,6 +46,7 @@ const Toppings = ({ addTopping, pizza }) => {
 
       <Link to="/order">
         <motion.button
+          variants={button}
           whileHover={{
             scale: 1.1,
             textShadow: "0px 0px 8px rgb(255,255,255)",
@@ -48,7 +56,7 @@ const Toppings = ({ addTopping, pizza }) => {
           Order
         </motion.button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
