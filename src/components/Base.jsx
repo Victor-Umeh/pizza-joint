@@ -1,6 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
+
+//animation properties
+const container = {
+  hidden: {
+    x: "100vw",
+  },
+  visible: {
+    x: 0,
+    transition: { delay: 0.5, type: "spring" },
+  },
+};
+
+const button = {
+  hidden: {
+    x: "100vw",
+  },
+  visible: {
+    x: 0,
+    transition: { duration: 0.5, type: "tween", ease: "easeOut" },
+  },
+};
 
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
@@ -8,9 +29,9 @@ const Base = ({ addBase, pizza }) => {
   return (
     <motion.div
       className="base container"
-      initial={{ x: "100vw" }}
-      animate={{ x: 0 }}
-      transition={{ delay: 0.5, type: "spring" }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
     >
       <h3>Step 1: Choose Your Base</h3>
       <ul>
@@ -37,12 +58,7 @@ const Base = ({ addBase, pizza }) => {
       </ul>
 
       {pizza.base && (
-        <motion.div
-          className="next"
-          initial={{ x: "100vw" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
-        >
+        <motion.div className="next" variants={button}>
           <Link to="/toppings">
             <motion.button
               whileHover={{
