@@ -9,6 +9,7 @@ import Order from "./components/Order";
 
 function App() {
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
+  const [showModal, useShowModal] = useState(false);
 
   const addBase = (base) => {
     setPizza({ ...pizza, base });

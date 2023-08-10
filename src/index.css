@@ -116,3 +116,10 @@ li span.active::before {
 .order p {
   margin: 20px auto;
 }
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

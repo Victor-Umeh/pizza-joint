@@ -27,6 +27,7 @@ const pathVariants = {
     },
   },
 };
+
 const Header = () => {
   return (
     <header>
