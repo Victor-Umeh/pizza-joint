@@ -9,16 +9,44 @@ const backdrop = {
     opacity: 1,
   },
 };
-const Modal = ({ showModal }) => {
+const modal = {
+  hidden: {
+    opacity: 0,
+    y: "-100vh",
+  },
+  visible: {
+    opacity: 1,
+    y: 300,
+    transition: {
+      duration: 0.5,
+      type: "spring",
+      stiffness: 110,
+      damp: 20,
+    },
+  },
+};
+const Modal = ({ setShowModal, showModal }) => {
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       {showModal && (
         <motion.div
           variants={backdrop}
           initial="hidden"
           animate="visible"
           className="backdrop"
-        ></motion.div>
+        >
+          <motion.div
+            className="modal"
+            variants={modal}
+            initial="hidden"
+            animate="visible"
+          >
+            <p>Reorder another pizza</p>
+            <Link to="/">
+              <button>Reorder</button>
+            </Link>
+          </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

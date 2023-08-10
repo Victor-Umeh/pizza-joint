@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AnimationProvider from "./animationContext";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Base from "./components/Base";
 import Toppings from "./components/Toppings";
 import Order from "./components/Order";
+import Modal from "./components/Modal";
 
 function App() {
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
-  const [showModal, useShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const addBase = (base) => {
     setPizza({ ...pizza, base });
@@ -27,21 +28,23 @@ function App() {
 
   return (
     <AnimationProvider>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route
-            path="/base"
-            element={<Base addBase={addBase} pizza={pizza} />}
-          ></Route>
-          <Route
-            path="/toppings"
-            element={<Toppings addTopping={addTopping} pizza={pizza} />}
-          ></Route>
-          <Route path="/order" element={<Order pizza={pizza} />}></Route>
-          <Route path="/" element={<Home />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Header />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <Routes>
+        <Route
+          path="/base"
+          element={<Base addBase={addBase} pizza={pizza} />}
+        ></Route>
+        <Route
+          path="/toppings"
+          element={<Toppings addTopping={addTopping} pizza={pizza} />}
+        ></Route>
+        <Route
+          path="/order"
+          element={<Order pizza={pizza} setShowModal={setShowModal} />}
+        ></Route>
+        <Route path="/" element={<Home />}></Route>
+      </Routes>
     </AnimationProvider>
   );
 }
