@@ -17,33 +17,28 @@ const modal = {
   visible: {
     opacity: 1,
     y: 300,
+
     transition: {
-      duration: 0.5,
-      type: "spring",
-      stiffness: 110,
-      damp: 20,
+      delay: 0.5,
     },
   },
 };
+
 const Modal = ({ setShowModal, showModal }) => {
   return (
     <AnimatePresence>
       {showModal && (
         <motion.div
+          className="backdrop"
           variants={backdrop}
           initial="hidden"
           animate="visible"
-          className="backdrop"
+          exit="hidden"
         >
-          <motion.div
-            className="modal"
-            variants={modal}
-            initial="hidden"
-            animate="visible"
-          >
+          <motion.div className="modal" variants={modal}>
             <p>Reorder another pizza</p>
             <Link to="/">
-              <button>Reorder</button>
+              <button onClick={() => setShowModal(false)}>Reorder</button>
             </Link>
           </motion.div>
         </motion.div>

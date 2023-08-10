@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router-dom";
 import AnimationProvider from "./animationContext";
 import Header from "./components/Header";
