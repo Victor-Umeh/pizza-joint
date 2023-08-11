@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import exit from "../libs/exitAnimation";
 
 const btnVariants = {
   hover: {
@@ -7,11 +8,14 @@ const btnVariants = {
     textShadow: "0px 0px 8px rgb(255,255,255)",
     boxShadow: "0px 0px 8px rgb(255,255,255)",
     transition: {
-      duration: 0.3,
-      yoyo: Infinity,
+      duration: 0.5,
+      // repeatDelay: 1,
+      repeatType: "mirror",
+      repeat: Infinity,
     },
   },
 };
+const exn = { ...exit };
 const Home = () => {
   return (
     <motion.div
@@ -19,6 +23,12 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1, duration: 1 }}
+      exit={{
+        x: "-100vw",
+        transiiton: {
+          ease: "easeInOut",
+        },
+      }}
     >
       <h2>Welcome to Pizza Joint</h2>
       <Link to="/base">

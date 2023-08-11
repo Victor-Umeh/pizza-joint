@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-// import { useAnimationVariants } from "../animationContext";
+import exit from "../libs/exitAnimation";
+
 const container = {
   hidden: {
     x: "100vw",
@@ -16,6 +17,7 @@ const container = {
     },
   },
 };
+
 const childrenVariants = {
   hidden: {
     opacity: 0,
@@ -26,8 +28,6 @@ const childrenVariants = {
 };
 
 const Order = ({ pizza, setShowModal }) => {
-  // const { container, button } = useAnimationVariants();
-
   useEffect(() => {
     setTimeout(() => {
       setShowModal(true);
@@ -40,6 +40,7 @@ const Order = ({ pizza, setShowModal }) => {
       variants={container}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h2>Thank you for your order :)</h2>
       <p>You ordered a {pizza.base} pizza with:</p>

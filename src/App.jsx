@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router-dom";
-import AnimationProvider from "./animationContext";
+import { useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import AnimationProvider from "./libs/animationContext";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Base from "./components/Base";
@@ -12,6 +13,7 @@ import Modal from "./components/Modal";
 function App() {
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
   const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
 
   const addBase = (base) => {
     setPizza({ ...pizza, base });
@@ -30,22 +32,24 @@ function App() {
   return (
     <AnimationProvider>
       <Header />
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-      <Routes>
-        <Route
-          path="/base"
-          element={<Base addBase={addBase} pizza={pizza} />}
-        ></Route>
-        <Route
-          path="/toppings"
-          element={<Toppings addTopping={addTopping} pizza={pizza} />}
-        ></Route>
-        <Route
-          path="/order"
-          element={<Order pizza={pizza} setShowModal={setShowModal} />}
-        ></Route>
-        <Route path="/" element={<Home />}></Route>
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Modal showModal={showModal} setShowModal={setShowModal} />
+        <Routes location={location} key={location.key}>
+          <Route
+            path="/base"
+            element={<Base addBase={addBase} pizza={pizza} />}
+          ></Route>
+          <Route
+            path="/toppings"
+            element={<Toppings addTopping={addTopping} pizza={pizza} />}
+          ></Route>
+          <Route
+            path="/order"
+            element={<Order pizza={pizza} setShowModal={setShowModal} />}
+          ></Route>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </AnimatePresence>
     </AnimationProvider>
   );
 }

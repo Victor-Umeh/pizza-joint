@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useAnimationVariants } from "../animationContext";
+import { useAnimationVariants } from "../libs/animationContext";
+import exit from "../libs/exitAnimation";
 
 const Toppings = ({ addTopping, pizza }) => {
   const { container, button } = useAnimationVariants();
@@ -19,6 +20,7 @@ const Toppings = ({ addTopping, pizza }) => {
       variants={container}
       initial="hidden"
       animate="visible"
+      exit={exit}
     >
       <h3>Step 2: Choose Toppings</h3>
       <ul>

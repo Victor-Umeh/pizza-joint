@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useAnimationVariants } from "../animationContext";
+import exit from "../libs/exitAnimation";
+import { useAnimationVariants } from "../libs/animationContext";
 
 //animation properties
 // const container = {
@@ -33,6 +34,7 @@ const Base = ({ addBase, pizza }) => {
       variants={container}
       initial="hidden"
       animate="visible"
+      exit={exit}
     >
       <h3>Step 1: Choose Your Base</h3>
       <ul>
